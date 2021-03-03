@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+<!-- Exports header and navbar from header.html
+	or any file you want-->
+{% block title %}Forbidden{% endblock %}
+{% block content %}
+
+<h1>Oops! Forbidden.  This is not the page you are looking for.</h1>
+<a href="{{ url_for('index') }}"><p>Click Here</a> to go to the Home Page</p>
+
+
+{% endblock %}

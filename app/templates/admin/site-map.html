@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% set active_page = "site-map" %}
+{% block content %}
+
+<div class="container">
+    <ul>
+        {% for arr in site_map %}
+        <li><a href="{{ arr[0] }}">{{ arr[0] }} - {{ arr[1] }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="page-header">
+  <h2>Site Map</h2>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% set active_page = "register" %}
+{% block content %}
+<h1>Register form</h1>
+<form method="POST" action="{{ url_for('auth.register') }}" accept-charset="UTF-8" role="form">
+    {{ form.csrf_token }}
+    {{ form.name.label }}
+    {{ form.name }}
+    <ul>
+    {% for error in form.name.errors %}
+       <li style="coloured:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+     {{ form.password.label }}
+     {{ form.password }}
+     {% for error in form.password.error %}
+     <ul>
+        <li style="coloured:red;">{{ error }}</li>
+     {% endfor %}
+     </ul>
+     {{ form.email.label }}
+     {{ form.email }}
+     <ul>
+     {% for error in form.email.error %}
+        <li style="color:red;">{{ error }}</li>
+     {% endfor %}
+     </ul>
+     <input type="submit" value="submit">
+</form>
+{% endblock %}

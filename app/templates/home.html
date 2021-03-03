@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% set active_page = "login" %}
+{% block content %}
+
+<div class="page-header">
+  <h2>Welcome, please login to continue.</h2>
+</div>
+<div class="container">
+    <div class="login-page clearfix">
+      <div class="login-box auth0-box before">
+        <a id="qsLoginBtn" class="btn btn-primary btn-lg btn-login" href="/login">Log In</a>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Flask App">
+    <meta name="author" content="PM">
+    <title>Flask App - {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% asset '/favicon.ico' %}">
+    <!-- styles -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% asset '/css/main.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+    <script src="https://unpkg.com/relative-time-format@1.0.5/bundle/relative-time-format.js"></script>
+    <script src="https://unpkg.com/javascript-time-ago@2.2.8/bundle/javascript-time-ago.js"></script>
+  </head>
+
+  <body>
+
+    {% set nav_tree_1 = [
+        ('/auth/login', 'login', 'Log In'),
+        ('/auth/register', 'register', 'Register'),
+        ('/auth/logout', 'logout', 'Log Out')
+    ] -%}
+
+    {% set nav_tree_2 = [
+        ('/admin/tickets', 'admin-tickets', 'Tickets'),
+        ('/admin/users', 'admin-users', 'Users'),
+        ('/tickets', 'tickets', 'Tickets'),
+        ('/profile', 'profile', 'Profile')
+    ] -%}
+    <!-- Static navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img src="{% asset '/img/logo.png' %}" width="192" height="44" alt="">
+        Company Name
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link mx-3{% if 'dashboard' == active_page %} active{% endif %}" href="/dashboard">Dashboard</a>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Auth
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {% for href, id, caption in nav_tree_1 %}
+              <a class="dropdown-item{% if id == active_page %} active{% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Data
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {% for href, id, caption in nav_tree_2 %}
+              <a class="dropdown-item{% if id == active_page %} active{% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="navbar-nav">
+          {% if session["profile"] %}
+          <img class="avatar" src="{{ session['profile']['picture'] }}" width="40" height="40"/>
+          <a class="nav-item nav-link mx-3" href="/logout">Logout</a>
+          {% else %}
+          <a class="nav-item nav-link mx-3" href="/login">Login</a>
+          <!-- {{ session["profile"] }} -->
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="content">
+
+        <!-- child template -->
+        {% block content %}
+        {% endblock %}
+
+      </div>
+      <div class="footer">
+        <hr>
+        <p>Flask App - 2020</p>
+        <p><a href="/site-map">Site Map</a></p>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- scripts -->
+  </body>
+</html>
