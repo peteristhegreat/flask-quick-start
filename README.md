@@ -22,11 +22,13 @@ https://flask.palletsprojects.com/en/1.1.x/blueprints/#blueprints
 
 https://github.com/Rev0kz/Flask-Google
 
+https://medium.com/google-cloud/building-a-flask-python-crud-api-with-cloud-firestore-firebase-and-deploying-on-cloud-run-29a10c502877
+
 https://github.com/Timtech4u/flask-firestore
 
-
-
 ## To be included soonish
+
+https://medium.com/@bobthomas295/client-side-authentication-with-python-firestore-and-firebase-352e484a2634
 
 https://flask-rbac.readthedocs.io/en/latest/index.html
 
@@ -40,7 +42,17 @@ https://raturi.in/blog/webpush-notification-using-python-and-flask/
 
 https://bitbucket.org/joetilsed/firebase/src/master/
 
+https://ai-facets.org/using-flask-jwt-with-flask-login/
+
 
 # Firebase APIs for Python
 
 https://googleapis.dev/python/firestore/latest/client.html
+
+https://github.com/firebase/firebase-admin-python
+
+https://github.com/firebase/quickstart-python/tree/master/messaging
+
+# Firebase APIs for Web-UI
+
+https://github.com/firebase/firebaseui-web#using-firebaseui-for-authentication
