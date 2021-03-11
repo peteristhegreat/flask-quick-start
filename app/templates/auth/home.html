@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% set active_page = "login" %}
+{% block content %}
+
+<div>
+  <div>
+      <h2>Welcome user {{ user_id|e }}!</h2>
+      Email verified = {{ verified|e }}
+      {% if not verified %}
+        <br/>
+        <a href="{{ url_for('auth.send_verify_email') }}" class="btn btn-primary">Resend verify email</a>
+      {% endif %}
+        <hr/>
+      <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">Logout</a>
+  </div>
+</div>
+
+{% endblock %}

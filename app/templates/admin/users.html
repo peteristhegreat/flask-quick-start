@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% set active_page = "admin-users" %}
+
+{% import 'form_utils.html' as form_utils -%}
+
+{% block content %}
+
+<h1>User List</h1>
+<ul>
+{% for dict in users %}
+    {% for key, val in dict.items() %}
+         <li>{{ key|e }}: {{ val|e }}</li>
+    {% endfor %}
+    <hr/>
+{% endfor %}
+</ul>
+
+<div>
+  <div>
+    <legend>New User</legend>
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            <div>
+            {% for error in errors %}
+                {{ error }}<br>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('admin.admin_users') }}" accept-charset="UTF-8" role="form">
+        {{ form.csrf_token }}
+        {% for field in form %}
+            {{ field() }}
+            {% for error in field.errors %}
+               <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        {% endfor %}
+        {{ form.recaptcha }}
+        <button type="submit" name="submit">Add User</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

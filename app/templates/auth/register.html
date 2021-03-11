@@ -2,29 +2,20 @@
 {% set active_page = "register" %}
 {% block content %}
 <h1>Register form</h1>
-<form method="POST" action="{{ url_for('auth.register') }}" accept-charset="UTF-8" role="form">
+<form method="POST" action="{{ url_for('auth.register_new_user') }}" accept-charset="UTF-8" role="form">
     {{ form.csrf_token }}
-    {{ form.name.label }}
     {{ form.name }}
-    <ul>
-    {% for error in form.name.errors %}
-       <li style="coloured:red;">{{ error }}</li>
-    {% endfor %}
-    </ul>
-     {{ form.password.label }}
+     {% for error in form.name.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+     {% endfor %}
      {{ form.password }}
-     {% for error in form.password.error %}
-     <ul>
-        <li style="coloured:red;">{{ error }}</li>
+     {% for error in form.name.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
      {% endfor %}
-     </ul>
-     {{ form.email.label }}
      {{ form.email }}
-     <ul>
      {% for error in form.email.error %}
-        <li style="color:red;">{{ error }}</li>
+      <div class="invalid-feedback">{{ error }}</div>
      {% endfor %}
-     </ul>
      <input type="submit" value="submit">
 </form>
 {% endblock %}

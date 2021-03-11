@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% set active_page = "login" %}
+{% block content %}
+
+<div>
+  <div>
+    <h1>Verify Email</h1>
+    {% if sent %}
+      <h2>Email verification link sent to Email</h2>
+        <p>Verify email link sent to {{ email|e }}.  Please click the link in your email then login again.</p>
+    {% else %}
+      <form method="POST" action="{{ url_for('auth.verify_email') }}" accept-charset="UTF-8" role="form">
+        {{ form.csrf_token }}
+        {{ form.email }} {# TODO: prepopulate with the email variable #}
+        {% for error in form.email.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %}
+       {{ form.recaptcha }}
+        <button type="submit" name="submit">Send verify email link</button>
+      </form>
+    {% endif %}
+    <a href="{{ url_for('auth.login_existing_user') }}">Return to login</a>
+  </div>
+</div>
+
+{% endblock %}

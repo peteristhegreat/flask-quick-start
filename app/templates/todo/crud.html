@@ -9,7 +9,7 @@
 <ul>
 {% for dict in todo_items %}
     {% for key, val in dict.items() %}
-         <li>{{ key|e }} - {{ val|e }}</li>
+         <li>{{ key|e }}: {{ val|e }}</li>
     {% endfor %}
 {% endfor %}
 </ul>

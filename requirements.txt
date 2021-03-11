@@ -4,7 +4,7 @@ firebase_admin
 Flask-WTF
 wtforms~=2.3.3
 Flask-Login
-Flask-BabelEx
+Flask-Babel
 Flask-SSLify
 # Flask-Admin
 Flask-RBAC
@@ -12,3 +12,8 @@ pywebpush
 Jinja2~=2.11.3
 Werkzeug~=1.0.1
 email_validator
+#Pyrebase==3.0.27
+pyrebase4
+wtforms-widgets
+Flask-JWT-Extended
+ppretty

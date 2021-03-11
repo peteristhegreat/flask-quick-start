@@ -31,7 +31,7 @@
     {% set nav_tree_2 = [
         ('/admin/tickets', 'admin-tickets', 'Tickets'),
         ('/admin/users', 'admin-users', 'Users'),
-        ('/tickets', 'tickets', 'Tickets'),
+        ('/test', 'test', 'Test'),
         ('/profile', 'profile', 'Profile')
     ] -%}
     <!-- Static navbar -->
@@ -75,14 +75,30 @@
         <div class="navbar-nav">
           {% if session["profile"] %}
           <img class="avatar" src="{{ session['profile']['picture'] }}" width="40" height="40"/>
-          <a class="nav-item nav-link mx-3" href="/logout">Logout</a>
+          <a class="nav-item nav-link mx-3" href="{{ url_for('auth.logout') }}">Logout</a>
           {% else %}
-          <a class="nav-item nav-link mx-3" href="/login">Login</a>
+          <a class="nav-item nav-link mx-3" href="{{ url_for('auth.login_existing_user') }}">Login</a>
           <!-- {{ session["profile"] }} -->
           {% endif %}
         </div>
       </div>
     </nav>
+
+    <div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'message' %}
+                  <div class="alert alert-warning" role="alert">
+                {% else %}
+                  <div class="alert alert-{{ category }}" role="alert">
+                {% endif %}
+                  {{ message }}
+                </div>
+            {% endfor %}
+          {% endif %}
+      {% endwith %}
+    </div>
 
     <div class="container">
       <div class="content">
@@ -100,5 +116,22 @@
     </div><!-- /.container -->
 
     <!-- scripts -->
+
+      <!-- Default Statcounter code for myanmyanku
+http://phyatt.mooo.com -->
+<script type="text/javascript">
+var sc_project=12493912;
+var sc_invisible=1;
+var sc_security="ae43ec53";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/12493912/0/ae43ec53/1/"
+alt="Web Analytics"></a></div></noscript>
+<!-- End of Statcounter Code -->
   </body>
 </html>

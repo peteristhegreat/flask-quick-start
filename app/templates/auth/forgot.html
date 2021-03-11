@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% set active_page = "register" %}
+{% block content %}
+
+<div>
+  <div>
+    <legend>Send Password Reset Link to Email</legend>
+    {% if not sent %}
+    <form method="POST" action="{{ url_for('auth.forgot_password') }}" accept-charset="UTF-8" role="form">
+      {{ form.csrf_token }}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+      {% endfor %}
+     {{ form.recaptcha }}
+      <button type="submit" name="submit">Send Reset Password Link</button>
+    </form>
+    {% else %}
+      <h2>Reset link sent to {{ email|e }} if account exists.</h2>
+
+    <a href="{{ url_for('auth.login_existing_user') }}">Return to login</a>
+    {% endif %}
+  </div>
+  <div>
+    <a href="{{ url_for('auth.login_existing_user') }}">Return to login</a>
+  </div>
+</div>
+
+{% endblock %}

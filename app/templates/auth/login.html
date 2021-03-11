@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% set active_page = "register" %}
+{% block content %}
+
+<div>
+  <div>
+    <h1>Login</h1>
+    <form method="POST" action="{{ url_for('auth.login_existing_user') }}" accept-charset="UTF-8" role="form">
+      {{ form.csrf_token }}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+      {% endfor %}
+      {{ form.password }}
+      {% for error in form.password.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+      {% endfor %}
+      <div>
+        {{ form.remember_me }}
+      <a role="button" href="./forgot">Forgot your password?</a><span class="clearfix"></span>
+      </div>
+
+     {{ form.recaptcha }}
+      <button type="submit" name="submit">Sign in</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
